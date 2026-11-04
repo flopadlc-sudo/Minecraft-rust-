@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Подключение device tree TECNO SPARK 40C (KM4k) к сборке LineageOS 24.0.
+
+    Скопируйте файл в .repo/local_manifests/ в корне исходников и выполните:
+        repo sync -j8 device/tecno/km4k device/tecno/km4k-kernels
+        source build/envsetup.sh
+        breakfast km4k
+        m bacon
+
+    ВАЖНО: пути к ядру (device/tecno/km4k-kernels) появятся только после того, как вы
+    разложите в них ядро, dtbo.img и модули из стоковой прошивки KM4k.
+    Пока их нет — закомментируйте второй <project>, иначе repo sync будет падать.
+-->
+<manifest>
+  <project path="device/tecno/km4k"
+           name="android_device_tecno_km4k"
+           remote="github"
+           revision="lineage-24.0" />
+
+  <!--
+  <project path="device/tecno/km4k-kernels"
+           name="android_device_tecno_km4k-kernels"
+           remote="github"
+           revision="lineage-24.0" />
+  -->
+</manifest>

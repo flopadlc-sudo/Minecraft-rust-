@@ -1,0 +1,4 @@
+# SKU properties
+ro.product.property_source_order=odm,product,vendor,system_ext,system
+import /odm/etc/prop/sku_${ro.boot.hardware.sku}.prop
+import /odm/etc/prop/density_${ro.boot.lcd}.prop

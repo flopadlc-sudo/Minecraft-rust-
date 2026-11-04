@@ -1,0 +1,4 @@
+# SKU properties
+import /product/etc/prop/fingerprint_${ro.boot.hardware.sku}.prop
+import /product/etc/prop/fingerprint_${ro.boot.carrier}.prop
+import /product/etc/prop/fingerprint_${ro.boot.hardware.sku}_${ro.boot.carrier}.prop

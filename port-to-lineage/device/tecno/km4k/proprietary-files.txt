@@ -1,0 +1,85 @@
+# Unpinned blobs from tecno/km4k/km4k:15/<RELEASE>/<BUILD>:user/release-keys
+#
+# ШАБЛОН. Это НЕ готовый список — его нужно заполнить блобами с телефона KM4k.
+#
+# Как заполнить:
+#   1. Возьмите точный build fingerprint с телефона:
+#        adb shell getprop ro.build.fingerprint
+#      и подставьте его в первую строку (шаблон выше).
+#   2. Список файлов берите из стоковой прошивки: распакуйте vendor.img / odm.img
+#      (payload.bin → payload-dumper) или снимите список с работающего телефона:
+#        adb shell ls -R /vendor/etc /vendor/lib64 /vendor/bin > vendor_list.txt
+#   3. Формат строки:
+#        <путь в блобе>[:<путь в сборке>][;ФЛАГИ]
+#      Флаги: FIX_SONAME, DISABLE_DEPS, DISABLE_VENDOR_TEST, KEEP_SYMLINKS, REPLACE_FILES.
+#
+# Ниже — стартовый шаблон по разделам. Оставьте только те строки, которые действительно
+# нужны: каждая лишняя строка — лишняя точка отказа при сборке.
+#
+# ВНИМАНИЕ: этот файл попадёт в публичный репозиторий. Блобы — проприетарные файлы
+# TECNO; держите их вне публичных веток.
+
+# Audio
+vendor/bin/hw/android.hardware.audio.service-aidl.mediatek
+vendor/etc/init/android.hardware.audio.service-aidl.mediatek.rc
+vendor/etc/vintf/manifest/android.hardware.audio.service-aidl.xml:vendor/etc/vintf/manifest/android.hardware.audio.service-aidl.mediatek.xml
+vendor/lib64/hw/vendor.mediatek.hardware.audio-impl.so
+vendor/lib64/hw/audio.primary.mt6768.so
+vendor/lib64/hw/audio.primary.default.so
+vendor/lib64/libmtk_mspeech.so
+
+# Bluetooth
+vendor/lib64/hw/vendor.mediatek.hardware.bluetooth.audio@2.1-impl.so
+vendor/lib64/hw/vendor.mediatek.hardware.bluetooth@1.1-impl.so
+
+# Camera
+vendor/bin/hw/android.hardware.camera.provider@2.7-service_64bit
+vendor/etc/init/android.hardware.camera.provider@2.7-service_64bit.rc
+vendor/etc/vintf/manifest/android.hardware.camera.provider@2.7-service.xml
+vendor/lib64/hw/vendor.mediatek.hardware.camera.isphal-V1-ndk.so:vendor/lib64/libmtkcam_grallocutils.so
+vendor/lib64/libmtkcam_hal_aidl_common.so
+vendor/lib64/libcam.utils.sensorprovider.so
+vendor/lib64/hw/android.hardware.camera.provider@2.7-service_64bit.so
+
+# Display / Composer
+vendor/bin/hw/android.hardware.graphics.composer@3.10-service
+vendor/etc/vintf/manifest/android.hardware.graphics.composer@3.10-service.xml
+vendor/lib64/hw/android.hardware.graphics.composer@3.10-service.so
+
+# Fingerprint
+vendor/bin/hw/android.hardware.biometrics.fingerprint-service.example
+vendor/lib64/hw/android.hardware.fingerprint-service.mediatek.so
+vendor/etc/init/android.hardware.fingerprint-service.mediatek.rc
+vendor/etc/vintf/manifest/android.hardware.fingerprint-service.mediatek.xml
+
+# GNSS
+vendor/bin/hw/android.hardware.gnss@1.1-service.mediatek
+vendor/lib64/hw/android.hardware.gnss@1.1-service.mediatek.so
+vendor/etc/init/android.hardware.gnss@1.1-service.mediatek.rc
+
+# IMS (нужны blob-патчи из device/tecno/mt6768-common/blob-patches/)
+vendor/bin/hw/vendor.mediatek.hardware.ims@1.0-service
+vendor/lib64/hw/vendor.mediatek.hardware.ims@1.0-service.so
+vendor/etc/init/vendor.mediatek.hardware.ims@1.0-service.rc
+vendor/etc/vintf/manifest/vendor.mediatek.hardware.ims@1.0-service.xml
+
+# Media / codecs
+vendor/lib64/libstagefright_softomx_vts.so
+vendor/etc/media_codecs.xml
+
+# Radio / IMS modem
+vendor/lib64/libmtkradio_vendor.so
+vendor/lib64/hw/vendor.mediatek.hardware.radio@1.1-service.so
+
+# Sensors
+vendor/bin/hw/android.hardware.sensors@2.1-service.mediatek
+vendor/lib64/hw/android.hardware.sensors@2.1-service-mediatek.so
+
+# Wi-Fi
+vendor/lib64/libwlan_cntl_tool.so
+vendor/lib64/libwlan_hw_service.so
+vendor/lib64/libwpa_supplicant.so
+
+# Firmware (приходят из proprietary-firmware.txt; здесь только то, что нужно вручную)
+vendor/firmware/aw963xx_reg_0.bin
+vendor/firmware/fs1815.fsm
